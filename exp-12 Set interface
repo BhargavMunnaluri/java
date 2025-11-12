@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class SetDemo {
+    public static void main(String[] args) {
+        // ----- HashSet Demo -----
+        Set<String> hashSet = new HashSet<>();
+        hashSet.add("Red");
+        hashSet.add("Green");
+        hashSet.add("Blue");
+        hashSet.add("Yellow");
+
+        System.out.println("Original HashSet: " + hashSet);
+
+        // remove specific element
+        hashSet.remove("Green");
+       
+        // clear entire set
+        hashSet.clear();
+
+        System.out.println("After Removals (HashSet): " + hashSet);
+
+        // ----- TreeSet Demo -----
+        TreeSet<String> treeSet = new TreeSet<>();
+        treeSet.add("Red");
+        treeSet.add("Green");
+        treeSet.add("Blue");
+        treeSet.add("Yellow");
+
+        System.out.println("\nOriginal TreeSet (Sorted): " + treeSet);
+
+        // remove specific element
+        treeSet.remove("Red");
+
+        // remove first and last elements
+        treeSet.pollFirst(); // removes smallest element
+        treeSet.pollLast();  // removes largest element
+
+        System.out.println("After Removals (TreeSet): " + treeSet);
+    }
+}
