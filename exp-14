@@ -1,1 +1,68 @@
+import java.sql.*;
 
+public class CreateStudentTable {
+    public static void main(String[] args) {
+        // Replace these placeholders with your actual database info when running
+        String url = "jdbc:mysql://<HOST>:<PORT>/<DATABASE_NAME>"; 
+        String user = "<USERNAME>";
+        String password = "<PASSWORD>";
+
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            // Create table if it doesn't exist
+            stmt.executeUpdate(
+                "CREATE TABLE IF NOT EXISTS Student (" +
+                "roll_no INT PRIMARY KEY, " +
+                "name VARCHAR(50), " +
+                "percentage DOUBLE)"
+            );
+
+            // Insert all records safely (ignore duplicates)
+            stmt.executeUpdate("INSERT IGNORE INTO Student VALUES (1, 'Alice', 75.5)");
+            stmt.executeUpdate("INSERT IGNORE INTO Student VALUES (2, 'Bob', 82.0)");
+            stmt.executeUpdate("INSERT IGNORE INTO Student VALUES (3, 'Charlie', 68.5)");
+            stmt.executeUpdate("INSERT IGNORE INTO Student VALUES (4, 'Diana', 91.0)");
+
+            System.out.println("Table created and records added successfully.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+_______________________________________________________________________________________________________________________
+
+
+import java.sql.*;
+
+public class DisplayTopStudents {
+    public static void main(String[] args) {
+        // Replace these placeholders with your actual database info before running
+        String url = "jdbc:mysql://<HOST>:<PORT>/<DATABASE_NAME>"; 
+        String user = "<USERNAME>";
+        String password = "<PASSWORD>";
+
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            // Query students with percentage > 70
+            String query = "SELECT roll_no, name, percentage FROM Student WHERE percentage > 70";
+            ResultSet rs = stmt.executeQuery(query);
+
+            System.out.println("Students with percentage > 70:");
+            while (rs.next()) {
+                int roll = rs.getInt("roll_no");
+                String name = rs.getString("name");
+                double perc = rs.getDouble("percentage");
+                System.out.println("Roll No: " + roll + ", Name: " + name + ", Percentage: " + perc);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
