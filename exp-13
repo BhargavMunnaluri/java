@@ -1,1 +1,48 @@
 
+import java.util.*;
+
+public class ArrayListDemo {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("C");
+        list.add("C++");
+        list.add("Java");
+        list.add("Python");
+
+        System.out.println("Original ArrayList: " + list);
+
+        // remove by index
+        list.remove(1);  // removes "C++"
+
+        // remove by object
+        list.remove("Python");
+
+        System.out.println("After Removals: " + list);
+    }
+}
+
+__________________________________________________________________________________________________________________________________
+
+import java.util.*;
+
+public class LinkedListDemo {
+    public static void main(String[] args) {
+        LinkedList<String> list = new LinkedList<>();
+        list.add("HTML");
+        list.add("CSS");
+        list.add("JavaScript");
+        list.add("React");
+
+        System.out.println("Original LinkedList: " + list);
+
+        // remove by value
+        list.remove("CSS");
+
+        // remove first and last
+        list.removeFirst();
+        list.removeLast();
+
+        System.out.println("After Removals: " + list);
+    }
+}
+
